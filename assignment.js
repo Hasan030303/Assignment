@@ -19,6 +19,17 @@ app.get("/contact",function (req,res){
 
     res.end("This is the Contact Page")
 });
+app.post("/file-write", function createFile(req, res) {
+    fs.writeFile('demo.txt', 'hello world', (err) => {
+        if (err) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('Error writing file');
+        } else {
+            res.writeHead(200, { 'Content-Type': 'text/plain' });
+            res.end('File written successfully');
+        }
+    });
+});
 
 
 app.listen(5500,function (){
